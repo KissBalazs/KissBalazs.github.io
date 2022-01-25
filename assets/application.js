@@ -85,11 +85,17 @@ function handleOk(res) {
     let jwtTokenField = document.getElementById('jwtTokenField');
     let kettabosLinkElement = document.getElementById('kettabosLink');
     let mindentabosLink = document.getElementById('mindentabosLink');
+    let kettabosLinkElement2 = document.getElementById('kettabosLink2');
+    let mindentabosLink2 = document.getElementById('mindentabosLink2');
     jwtTokenField.textContent = res.hisJwt
     kettabosLinkElement.href = `https://plugin.atr-sandbox.icellmobilsoft.hu/plugin-frontend/patientData?hisJwt=${res.hisJwt}`
     kettabosLinkElement.textContent = `https://plugin.atr-sandbox.icellmobilsoft.hu/plugin-frontend/patientData?hisJwt=${res.hisJwt}`
     mindentabosLink.href = `https://plugin.atr-sandbox.icellmobilsoft.hu/plugin-frontend/medicalPatientData?hisJwt=${res.hisJwt}`
     mindentabosLink.textContent = `https://plugin.atr-sandbox.icellmobilsoft.hu/plugin-frontend/medicalPatientData?hisJwt=${res.hisJwt}`
+    kettabosLinkElement2.href = `http://localhost:4200/patientData?hisJwt=${res.hisJwt}`
+    kettabosLinkElement2.textContent = `http://localhost:4200/patientData?hisJwt=${res.hisJwt}`
+    mindentabosLink2.href = `http://localhost:4200/medicalPatientData?hisJwt=${res.hisJwt}`
+    mindentabosLink2.textContent = `http://localhost:4200/medicalPatientData?hisJwt=${res.hisJwt}`
 }
 
 function copyElementTextToClipboard(element) {
@@ -107,18 +113,12 @@ const key_departmentId = "MOCK_HIS_DEPARTMENTID";
 form.addEventListener('submit', sendRequest);
 
 loadSavedElements();
-// todo:
 
 /**
- 1    E123456    123456777    O64288    ORVOS
- 2    E123456    01198K319    O64288    ORVOS
- 3    E198100    198102100    O64288    ORVOS
- 4    E198100    198103100    O64288    ORVOS
- 5    E320649    003206496    O64288    ATR_ORVOS
- 6    E320649    003206495    O64288    ATR_ORVOS
-
- User: T02526
- Intézmény: E198100
- DEP: 198103100
-
+ "loginName": "tplgatr",
+ "instituteId": "E198100",
+ "departmentId": "198103100",
+ "roles": [
+ "dgcrat-default"
+ ],
  */
