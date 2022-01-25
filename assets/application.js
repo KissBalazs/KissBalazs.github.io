@@ -1,12 +1,25 @@
 // {"asd":1, "axcdx":2}
 var obj = {}
 
+function loadSavedElements(){
+    loginNameElement = document.getElementById('loginName');
+    instituteIdElement = document.getElementById('instituteId');
+    departmentIdElement = document.getElementById('departmentId');
+
+    loginNameElement.value = sessionStorage.getItem(key_loginName) ?? '';
+    instituteIdElement.value = sessionStorage.getItem(key_instituteId) ?? '';
+    departmentIdElement.value = sessionStorage.getItem(key_departmentId) ?? '';
+}
+
 function createBody() {
     obj = {
         loginName: (document.getElementById('loginName').value),
         instituteId: document.getElementById('instituteId').value,
         departmentId: document.getElementById('departmentId').value,
     }
+    sessionStorage.setItem(key_loginName, obj.loginName)
+    sessionStorage.setItem(key_instituteId, obj.instituteId)
+    sessionStorage.setItem(key_departmentId, obj.departmentId)
     try {
         const roles = document.getElementById('roles').value;
         if (roles != null && roles.length > 0 && roles !== "[ ]") {
@@ -69,6 +82,14 @@ function handleOk(res) {
     correctResult.className = "row"
     resTypeText.textContent = "Siker"
     console.log(res);
+    let jwtTokenField = document.getElementById('jwtTokenField');
+    let kettabosLinkElement = document.getElementById('kettabosLink');
+    let mindentabosLink = document.getElementById('mindentabosLink');
+    jwtTokenField.textContent = res.hisJwt
+    kettabosLinkElement.href = `https://plugin.atr-sandbox.icellmobilsoft.hu/plugin-frontend/patientData?hisJwt=${res.hisJwt}`
+    kettabosLinkElement.textContent = `https://plugin.atr-sandbox.icellmobilsoft.hu/plugin-frontend/patientData?hisJwt=${res.hisJwt}`
+    mindentabosLink.href = `https://plugin.atr-sandbox.icellmobilsoft.hu/plugin-frontend/medicalPatientData?hisJwt=${res.hisJwt}`
+    mindentabosLink.textContent = `https://plugin.atr-sandbox.icellmobilsoft.hu/plugin-frontend/medicalPatientData?hisJwt=${res.hisJwt}`
 }
 
 function copyElementTextToClipboard(element) {
@@ -80,17 +101,21 @@ const log = document.getElementById('log');
 const errorArea = document.getElementById('error-feedback');
 const correctResult = document.getElementById('correct-result');
 const resTypeText = document.getElementById('resTypeText');
+const key_loginName = "MOCK_HIS_LOGINNAME";
+const key_instituteId = "MOCK_HIS_INSTITUTEID";
+const key_departmentId = "MOCK_HIS_DEPARTMENTID";
 form.addEventListener('submit', sendRequest);
 
+loadSavedElements();
 // todo:
 
 /**
-1	E123456	123456777	O64288	ORVOS
-2	E123456	01198K319	O64288	ORVOS
-3	E198100	198102100	O64288	ORVOS
-4	E198100	198103100	O64288	ORVOS
-5	E320649	003206496	O64288	ATR_ORVOS
-6	E320649	003206495	O64288	ATR_ORVOS
+ 1    E123456    123456777    O64288    ORVOS
+ 2    E123456    01198K319    O64288    ORVOS
+ 3    E198100    198102100    O64288    ORVOS
+ 4    E198100    198103100    O64288    ORVOS
+ 5    E320649    003206496    O64288    ATR_ORVOS
+ 6    E320649    003206495    O64288    ATR_ORVOS
 
  User: T02526
  Intézmény: E198100
