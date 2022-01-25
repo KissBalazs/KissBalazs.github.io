@@ -1,1 +1,764 @@
-Hello Word
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://getbootstrap.com/docs/5.1/examples/checkout/ -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <link rel="icon" href="assets/images/favicon.ico">
+    <title>HIS MOCK</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Favicons -->
+    <meta name="theme-color" content="#7952b3">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="assets/form-validation.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container">
+    <main>
+        <div class="py-5 text-center">
+            <img class="d-block mx-auto mb-4" src="assets/images/atr-logo-notext.png" alt="" width="100" height="72">
+            <h2>ATR HIS Mock app</h2>
+            <p class="lead">A bejelentkezési adatok megadása után alul kapod meg a JWT tokent.</p>
+        </div>
+
+        <div class="rowg-5">
+            <div>
+                <h4>Bejelentkezési adatok</h4>
+                <form id="form" autocomplete="on" name="baseform">
+                    <div class="row  d-flex justify-content-around">
+                        <div class="col-sm-4">
+                            <label for="loginName" class="form-label">loginName</label>
+                            <input type="text" class="form-control" id="loginName" name="loginNameField"
+                                   autocomplete="on"
+                                   placeholder="loginName" value=""
+                                   required="">
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="instituteId" class="form-label">instituteId</label>
+                            <input type="text" class="form-control" id="instituteId" name="instituteId"
+                                   autocomplete="on"
+                                   placeholder="instituteId" value=""
+                                   required="">
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="departmentId" class="form-label">departmentId</label>
+                            <input type="text" class="form-control" id="departmentId" name="departmentId"
+                                   autocomplete="on"
+                                   placeholder="departmentId"
+                                   value="" required="">
+                        </div>
+
+                        <div class="col-12 row">
+                            <div class="col-8">
+                                <label for="roles" class="form-label">roles (string tömb)</label>
+                                <div class="input-group has-validation">
+                                    <textarea class="form-control" id="roles" placeholder="roles" rows="4">["ATR-ORVOS", "ATR-PLUGIN-REGISTRATOR"]
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="col-4 pt-30">
+                                <p>Az orvosi betegadatok oldalhoz:   <code>ATR-ORVOS</code> <br/>
+                                    Betegfelvételhez:         <code>ATR-PLUGIN-REGISTRATOR</code>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-12 row">
+                            <div class="col-6">
+                                <label for="dataExchangeContainer" class="form-label">dataExchangeContainer
+                                    (objektum) </label>
+                                <textarea class="form-control" id="dataExchangeContainer"
+                                          placeholder="dataExchangeContainer" rows="5"></textarea>
+                            </div>
+                            <div class="col-6">
+                                <div class="accordion pt-30" id="accordionExample2">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo2">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo2"
+                                                    aria-expanded="false" aria-controls="collapseTwo">
+                                                "2 TAB-os" példa HIS adat
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo2" class="accordion-collapse collapse"
+                                             aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <p>
+                                                    Tesztadat, amely egy mockolt login választ ad vissza. Csak a
+                                                    `dataExchangeContainer` érdekes belőle.
+
+                                                    Ebben nincs nursingCycleDataId, ezt a betegfelvételes (csak 2 tabos)
+                                                    felület esetében érdemes hazsnálni üzletileg ott indokolt
+                                                </p>
+                                                <button type="button"
+                                                        onclick="copyElementTextToClipboard(dataExchangeContainer1)">
+                                                    Vágólapra
+                                                </button>
+                                                <pre id="dataExchangeContainer1">
+                                                    {
+    "nursingCare": {
+      "index": 1,
+      "nursingCareOperationType": "CREATE",
+      "nursingCare": {
+        "hisId": "string",
+        "instituteId": "E198122",
+        "departmentId": "198102322",
+        "nursingCareStartType": "7",
+        "nursingCareStartDetail": "Valami részletes leírás arról, hogy miért vették fel a beteget.",
+        "nursingCareStart": "2022-01-17T16:25:30.641Z",
+        "plannedNursingCareEnd": "2022-01-17T16:25:30.641Z",
+        "nursingCareEnd": "2022-01-17T16:25:30.641Z",
+        "anamnesisRecordingDate": "2022-01-17T16:25:30.641Z",
+        "anamnesisRecordingType": "PATIENT",
+        "anamnesisRecordingDetail": "Anamnézis detail leírása",
+        "detailedPatientPlacement": {
+          "building": "A",
+          "floor": "2",
+          "room": "10"
+        },
+        "bed": "103",
+        "admissionReason": "Mert megtehetjük",
+        "treatingDoctorId": "O22222",
+        "patient": {
+          "eesztPatientId": "123456789012",
+          "hisPatientID": "HIS_PATIENT_ID01",
+          "receivePublicHc": true,
+          "publicHcEndDate": "2024-01-17T16:25:30.642Z",
+          "familyDoctorID": "O44444",
+          "maritalStatus": "SINGLE",
+          "timeOfDeath": "2030-01-17T16:25:30.642Z"
+        },
+        "socialAnamnesis": {
+          "socialSituation": "ARRANGED",
+          "socialSituationDetail": "Szociális helyzet detail szövege DÁ",
+          "caretakerName": "Gondviselő Géza",
+          "caretakerPhone": "+36301231231",
+          "caretakerEmail": "gondviselo@eznemletezoemail.com",
+          "childHasAttendant": "YES",
+          "childAttendantDetail": "Volt vele valaki",
+          "educationalAttainment": "PRIMARY",
+          "educationalAttainmentDetail": "Nyolc általános"
+        },
+        "patientContact": {
+          "contactType": "PARENT",
+          "contactName": "Hozzátartozó Helga",
+          "contactPhoneNumber": "+36301231231",
+          "contactEmail": "hozzatartozo@eznemletezoemail.com",
+          "contactAddress": {
+            "country": "348",
+            "zipCode": "2315",
+            "city": "Szigethalom",
+            "region": "Pest",
+            "structuredAddress": {
+              "street": "Valami",
+              "streetType": "1",
+              "streetNumber": "123",
+              "building": "A",
+              "floor": "1",
+              "door": "2"
+            }
+          }
+        }
+      }
+    },
+    "patient": {
+      "patient": {
+        "identifiers": {
+          "identifier": [
+            {
+              "type": {
+                "code": "1",
+                "name": "123123123"
+              },
+              "details": {
+                "value": "TAJ_szám",
+                "foreign": false
+              }
+            }
+          ]
+        },
+        "nationality": {
+          "country": {
+            "code": "348",
+            "name": "Magyarország"
+          }
+        },
+        "officialName": {
+          "firstName": "Dohn",
+          "lastName": "Joe",
+          "title": "mr"
+        },
+        "birthName": {
+          "firstName": "Dohn",
+          "lastName": "Joe",
+          "title": "mr"
+        },
+        "motherName": {
+          "firstName": "Dane",
+          "lastName": "Joe",
+          "title": "mrs"
+        },
+        "gender": {
+          "code": "F",
+          "name": "Férfi"
+        },
+        "birthInfo": {
+          "country": {
+            "code": "348",
+            "name": "Magyarország"
+          },
+          "city": "Budapest",
+          "birthDate": "1995-01-17",
+          "birthYear": 1995,
+          "birthMonth": 1,
+          "birthDay": 17
+        },
+        "estimatedAge": 27,
+        "permanentAddress": {
+          "country": {
+            "code": "348",
+            "name": "Magyarország"
+          },
+          "region": "Pest",
+          "area": "Terület, nemtudom",
+          "zipCode": "2315",
+          "city": "Szigethalom",
+          "landRegisterReference": "123",
+          "publicSpace": "Valami",
+          "publicType": "1",
+          "apartmentNumber": "1",
+          "building": "B",
+          "stairways": "C",
+          "floor": "2",
+          "door": "23"
+        },
+        "residenceAddress": {
+          "country": {
+            "code": "348",
+            "name": "Magyarország"
+          },
+          "region": "Pest",
+          "area": "Terület, nemtudom",
+          "zipCode": "2315",
+          "city": "Szigethalom",
+          "landRegisterReference": "123",
+          "publicSpace": "Valami",
+          "publicType": "1",
+          "apartmentNumber": "1",
+          "building": "B",
+          "stairways": "C",
+          "floor": "2",
+          "door": "23"
+        },
+        "foreignAddress": {
+          "country": {
+            "code": "344",
+            "name": "Hongkong"
+          },
+          "region": "Taiwan",
+          "zipCode": "2315",
+          "city": "Peking",
+          "landRegisterReference": "123",
+          "publicSpace": "Valami",
+          "publicType": "1",
+          "apartmentNumber": "1",
+          "building": "B",
+          "stairways": "C",
+          "floor": "2",
+          "door": "23"
+        },
+        "contacts": {
+          "contact": [
+            {
+              "type": {
+                "code": "3",
+                "name": "E-mail"
+              },
+              "value": "qwe@asd.com",
+              "global": false
+            }
+          ]
+        }
+      },
+      "force": false,
+      "pid": "123456789012"
+    }
+  }
+
+                                                </pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree2">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseThree2"
+                                                    aria-expanded="false" aria-controls="collapseThree">
+                                                Összes tab-hoz létező userhez példa HIS adat
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree2" class="accordion-collapse collapse"
+                                             aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+
+                                                <p>
+                                                    Tesztadat, melyben át kell írni a "nursingCycleDataId":
+                                                    "FE_WRISTBAND_TEST2" értékét (több helyen is) egy olyan
+                                                    nursingCycleDataId-ra,
+                                                    ami a DB-ben ebbena selectben benne van:
+
+                                                <pre>
+* select * from ATR_NURSING_SOAP.nursing_cycle_data ncd
+* join ATR_NURSING_SOAP.nursing_cycle nc on ncd.nursing_cycle_id = nc.x__id
+* where nc.institute_id = 'E198122';
+</pre>
+                                                pl.: FE_WRISTBAND_TEST1. FE_WRISTBAND_TEST3 ...
+                                                </p>
+                                                <button type="button"
+                                                        onclick="copyElementTextToClipboard(dataExchangeContainer2)">
+                                                    Vágólapra
+                                                </button>
+                                                <pre id="dataExchangeContainer2">
+{
+    "nursingCycleDataId": "FE_WRISTBAND_TEST3",
+    "nursingCare": {
+      "index": 1,
+      "nursingCareOperationType": "MODIFY",
+      "nursingCycleDataId": "FE_WRISTBAND_TEST3",
+      "nursingCare": {
+        "hisId": "string",
+        "instituteId": "E198122",
+        "departmentId": "198102322",
+        "nursingCareStartType": "7",
+        "nursingCareStartDetail": "Valami részletes leírás arról, hogy miért vették fel a beteget.",
+        "nursingCareStart": "2022-01-17T16:25:30.641Z",
+        "plannedNursingCareEnd": "2022-01-17T16:25:30.641Z",
+        "nursingCareEnd": "2022-01-17T16:25:30.641Z",
+        "anamnesisRecordingDate": "2022-01-17T16:25:30.641Z",
+        "anamnesisRecordingType": "PATIENT",
+        "anamnesisRecordingDetail": "Anamnézis detail leírása",
+        "detailedPatientPlacement": {
+          "building": "A",
+          "floor": "2",
+          "room": "10"
+        },
+        "bed": "103",
+        "admissionReason": "Mert megtehetjük",
+        "treatingDoctorId": "O22222",
+        "patient": {
+          "eesztPatientId": "123456789012",
+          "hisPatientID": "HIS_PATIENT_ID01",
+          "receivePublicHc": true,
+          "publicHcEndDate": "2024-01-17T16:25:30.642Z",
+          "familyDoctorID": "O44444",
+          "maritalStatus": "SINGLE",
+          "timeOfDeath": "2030-01-17T16:25:30.642Z"
+        },
+        "socialAnamnesis": {
+          "socialSituation": "ARRANGED",
+          "socialSituationDetail": "Szociális helyzet detail szövege DÁ",
+          "caretakerName": "Gondviselő Géza",
+          "caretakerPhone": "+36301231231",
+          "caretakerEmail": "gondviselo@eznemletezoemail.com",
+          "childHasAttendant": "YES",
+          "childAttendantDetail": "Volt vele valaki",
+          "educationalAttainment": "PRIMARY",
+          "educationalAttainmentDetail": "Nyolc általános"
+        },
+        "patientContact": {
+          "contactType": "PARENT",
+          "contactName": "Hozzátartozó Helga",
+          "contactPhoneNumber": "+36301231231",
+          "contactEmail": "hozzatartozo@eznemletezoemail.com",
+          "contactAddress": {
+            "country": "348",
+            "zipCode": "2315",
+            "city": "Szigethalom",
+            "region": "Pest",
+            "structuredAddress": {
+              "street": "Valami",
+              "streetType": "1",
+              "streetNumber": "123",
+              "building": "A",
+              "floor": "1",
+              "door": "2"
+            }
+          }
+        }
+      }
+    },
+    "patient": {
+      "patient": {
+        "identifiers": {
+          "identifier": [
+            {
+              "type": {
+                "code": "1",
+                "name": "123123123"
+              },
+              "details": {
+                "value": "TAJ_szám",
+                "foreign": false
+              }
+            }
+          ]
+        },
+        "nationality": {
+          "country": {
+            "code": "348",
+            "name": "Magyarország"
+          }
+        },
+        "officialName": {
+          "firstName": "Dohn",
+          "lastName": "Joe",
+          "title": "mr"
+        },
+        "birthName": {
+          "firstName": "Dohn",
+          "lastName": "Joe",
+          "title": "mr"
+        },
+        "motherName": {
+          "firstName": "Dane",
+          "lastName": "Joe",
+          "title": "mrs"
+        },
+        "gender": {
+          "code": "F",
+          "name": "Férfi"
+        },
+        "birthInfo": {
+          "country": {
+            "code": "348",
+            "name": "Magyarország"
+          },
+          "city": "Budapest",
+          "birthDate": "1995-01-17",
+          "birthYear": 1995,
+          "birthMonth": 1,
+          "birthDay": 17
+        },
+        "estimatedAge": 27,
+        "permanentAddress": {
+          "country": {
+            "code": "348",
+            "name": "Magyarország"
+          },
+          "region": "Pest",
+          "area": "Terület, nemtudom",
+          "zipCode": "2315",
+          "city": "Szigethalom",
+          "landRegisterReference": "123",
+          "publicSpace": "Valami",
+          "publicType": "1",
+          "apartmentNumber": "1",
+          "building": "B",
+          "stairways": "C",
+          "floor": "2",
+          "door": "23"
+        },
+        "residenceAddress": {
+          "country": {
+            "code": "348",
+            "name": "Magyarország"
+          },
+          "region": "Pest",
+          "area": "Terület, nemtudom",
+          "zipCode": "2315",
+          "city": "Szigethalom",
+          "landRegisterReference": "123",
+          "publicSpace": "Valami",
+          "publicType": "1",
+          "apartmentNumber": "1",
+          "building": "B",
+          "stairways": "C",
+          "floor": "2",
+          "door": "23"
+        },
+        "foreignAddress": {
+          "country": {
+            "code": "344",
+            "name": "Hongkong"
+          },
+          "region": "Taiwan",
+          "zipCode": "2315",
+          "city": "Peking",
+          "landRegisterReference": "123",
+          "publicSpace": "Valami",
+          "publicType": "1",
+          "apartmentNumber": "1",
+          "building": "B",
+          "stairways": "C",
+          "floor": "2",
+          "door": "23"
+        },
+        "contacts": {
+          "contact": [
+            {
+              "type": {
+                "code": "3",
+                "name": "E-mail"
+              },
+              "value": "qwe@asd.com",
+              "global": false
+            }
+          ]
+        }
+      },
+      "force": false,
+      "pid": "123456789012"
+    },
+    "allergies": [
+      {
+        "index": 1,
+        "allergyOperationType": "CREATE",
+        "allergyId": "null",
+        "allergy": {
+          "externalId": "123",
+          "allergyGroupId": "OTHER",
+          "allergyGroupName": "Egyéb",
+          "allergyDetail": "Olyan vlamire allergiás, amit nem ismerünk",
+          "commentField": "Nagyon ritka",
+          "nursingCycleDataId": "FE_WRISTBAND_TEST3"
+        }
+      },
+      {
+        "index": 2,
+        "allergyOperationType": "CREATE",
+        "allergyId": undefined,
+        "allergy": {
+          "externalId": "123",
+          "allergyGroupId": "OTHER",
+          "allergyGroupName": "Egyéb",
+          "allergyDetail": "Olyan vlamire allergiás, amit nem ismerünk",
+          "commentField": "Nagyon ritka",
+          "nursingCycleDataId": "FE_WRISTBAND_TEST3"
+        }
+      }
+    ],
+    "diagnoses": [
+      {
+        "index": 1,
+        "diagnosisOperationType": "CREATE",
+        "diagnosisId": undefined,
+        "diagnosis": {
+          "externalId": "123",
+          "bnoCode": "0101123",
+          "diagnosisTime": "2021-10-31T13:00:00Z",
+          "commentField": "Valami comment",
+          "nursingCycleDataId": "FE_WRISTBAND_TEST3"
+        }
+      }
+    ],
+    "surgeries": [
+      {
+        "index": 1,
+        "surgeryOperationType": "CREATE",
+        "surgeryId": undefined,
+        "surgery": {
+          "externalId": "123",
+          "oenoCode": "0101",
+          "surgeryDate": "2021-10-31T13:00:00Z",
+          "commentField": "Gyorsan meg lesz",
+          "nursingCycleDataId": "FE_WRISTBAND_TEST3"
+        }
+      }
+    ],
+    "medications": [
+      {
+        "index": 1,
+        "medicationOperationType": "CREATE",
+        "medication": {
+          "nursingCycleDataId": "FE_WRISTBAND_TEST3",
+          "externalId": "EXTID123",
+          "dosage": "2x2, de azt nagyon",
+          "comment": "Kapjon meg mindent időben",
+          "medicineId": 53662440
+        },
+        "medicationDetail": [
+          {
+            "detailExternalId": "DET_EXTID_123",
+            "plannedNursingDate": "2023-01-17T16:25:30.643Z",
+            "timeOfDay": "MORNING",
+            "timeRelevant": true
+          }
+        ]
+      }
+    ],
+    "prescriptions": [
+      {
+        "index": 1,
+        "prescriptionOperationType": "CREATE",
+        "nursingPrescription": {
+          "nursingCycleDataId": "FE_WRISTBAND_TEST3",
+          "nursingActivityId": "3MKKPUJSX31WND01",
+          "externalId": "EXT_ID_123",
+          "comment": "Valami komment"
+        },
+        "nursingPrescriptionDetail": [
+          {
+            "detailExternalId": "DET_EXTID_123",
+            "plannedNursingDate": "2023-01-17T16:25:30.643Z",
+            "timeOfDay": "MORNING",
+            "timeRelevant": true
+          }
+        ]
+      }
+    ],
+    "transfusions": [
+      {
+        "index": 1,
+        "transfusionOperationType": "CREATE",
+        "transfusion": {
+          "nursingCycleDataId": "FE_WRISTBAND_TEST3",
+          "bloodProductType": "RED_BLOOD_CELL",
+          "bloodType": "AB+",
+          "plannedAdministrationDate": "2023-01-17T16:25:30.643Z",
+          "dosage": 1,
+          "commentField": "Adjunk eleget"
+        }
+      }
+    ],
+    "dismissings": [
+      {
+        "index": 2147483647,
+        "dismissingOperationType": "CREATE",
+        "dismissing": {
+          "nursingCycleDataId": "FE_WRISTBAND_TEST3",
+          "dismissingType": "OTHER_DEPARTMENT",
+          "leavingType": "ALONE",
+          "leavingDetail": "Egyedül megy, mert így akar",
+          "nursingCareEnd": "2023-08-17T16:25:30.643Z"
+        }
+      }
+    ]
+  }
+
+                                                </pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+
+                    <p>A következő hívás a
+                    <pre>https://user-service.atr.icellmobilsoft.hu/test/user/his/jwt</pre>
+                    végpontot
+                    fogja meghívni.</p>
+                    <button class="w-100 btn btn-primary btn-lg" type="submit">JWT generálás</button>
+
+
+                </form>
+            </div>
+        </div>
+        <hr class="my-4">
+        <div class="col g-5 pt-5">
+            <div>
+                <h3 id="resTypeText">Válasz:</h3>
+
+            </div>
+            <div class="row visually-hidden" id="error-feedback">
+                <div class="col-3">
+                    <label>Kérés:</label>
+                    <textarea disabled class="form-control" id="original" rows="20"></textarea>
+                </div>
+                <div class="col-9">
+                    <label>Válasz:</label>
+                    <textarea disabled class="form-control error" id="log" rows="20"></textarea>
+                </div>
+            </div>
+
+            <div class=" todo row visually-hidden" id="correct-result">
+                <label>JWT token:</label>
+                <textarea disabled id="jwtTokenField"></textarea>
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                    aria-controls="panelsStayOpen-collapseOne">
+                                "Két tabos" megjelenítés:
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                             aria-labelledby="panelsStayOpen-headingOne">
+                            <div class="accordion-body">
+                                <a href="https://plugin.atr.icellmobilsoft.hu/plugin-frontend/patientData?hisJwt=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJFRVNaVCIsImF1ZCI6IkVFU1pUUGx1Z2luQVRSIiwiZXhwIjoxNjQxNTQxOTQ2LCJzc2lkIjoiZTI2YTUyNWItN2U3Ny00YjM0LTgxMWYtMjM5MGUxNDcxMmVjIn0.mo-yqeN5E4rVKlbcLZO5fNVzW82cMQGIrCeDVEiiLHA2B1M6hzTHB6cHUjCIWZufKRxH4kI-Bxq0Y7GWy0GvD0nQaeG4Bdx7BvDjfnvMbR85d1En1JYEOTmtUSWYnst4UeYpU8_yxnAhsGSY0flv-82jQGVdTe4M73q-MSlHZNE3GHvzGIjrwLCFa7fWeos3Tn3es2vg9hlzp6MgCwNFQCpkTmzld1X-Y42JXRsdST2wA8qBmYzL2S708Rd9BMy_ElfFmHtjbHdHCssLkjZfO6_VNbPvd5M3RNv3mr4VnxaEqFJ-_O4tgahaxVweHu-n91qd4WlDTfuyYPHOFwkkyw">https://plugin.atr.icellmobilsoft.hu/plugin-frontend/patientData?hisJwt=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJFRVNaVCIsImF1ZCI6IkVFU1pUUGx1Z2luQVRSIiwiZXhwIjoxNjQxNTQxOTQ2LCJzc2lkIjoiZTI2YTUyNWItN2U3Ny00YjM0LTgxMWYtMjM5MGUxNDcxMmVjIn0.mo-yqeN5E4rVKlbcLZO5fNVzW82cMQGIrCeDVEiiLHA2B1M6hzTHB6cHUjCIWZufKRxH4kI-Bxq0Y7GWy0GvD0nQaeG4Bdx7BvDjfnvMbR85d1En1JYEOTmtUSWYnst4UeYpU8_yxnAhsGSY0flv-82jQGVdTe4M73q-MSlHZNE3GHvzGIjrwLCFa7fWeos3Tn3es2vg9hlzp6MgCwNFQCpkTmzld1X-Y42JXRsdST2wA8qBmYzL2S708Rd9BMy_ElfFmHtjbHdHCssLkjZfO6_VNbPvd5M3RNv3mr4VnxaEqFJ-_O4tgahaxVweHu-n91qd4WlDTfuyYPHOFwkkyw</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                            <button class="accordion-button " type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
+                                    aria-controls="panelsStayOpen-collapseTwo">
+                                "Minden tabos" megjelenítés:
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show"
+                             aria-labelledby="panelsStayOpen-headingTwo">
+                            <div class="accordion-body">
+                                <a href="https://plugin.atr.icellmobilsoft.hu/plugin-frontend/medicalPatientData?hisJwt=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJFRVNaVCIsImF1ZCI6IkVFU1pUUGx1Z2luQVRSIiwiZXhwIjoxNjQxNTQxOTQ2LCJzc2lkIjoiZTI2YTUyNWItN2U3Ny00YjM0LTgxMWYtMjM5MGUxNDcxMmVjIn0.mo-yqeN5E4rVKlbcLZO5fNVzW82cMQGIrCeDVEiiLHA2B1M6hzTHB6cHUjCIWZufKRxH4kI-Bxq0Y7GWy0GvD0nQaeG4Bdx7BvDjfnvMbR85d1En1JYEOTmtUSWYnst4UeYpU8_yxnAhsGSY0flv-82jQGVdTe4M73q-MSlHZNE3GHvzGIjrwLCFa7fWeos3Tn3es2vg9hlzp6MgCwNFQCpkTmzld1X-Y42JXRsdST2wA8qBmYzL2S708Rd9BMy_ElfFmHtjbHdHCssLkjZfO6_VNbPvd5M3RNv3mr4VnxaEqFJ-_O4tgahaxVweHu-n91qd4WlDTfuyYPHOFwkkyw">https://plugin.atr.icellmobilsoft.hu/plugin-frontend/medicalPatientData?hisJwt=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJFRVNaVCIsImF1ZCI6IkVFU1pUUGx1Z2luQVRSIiwiZXhwIjoxNjQxNTQxOTQ2LCJzc2lkIjoiZTI2YTUyNWItN2U3Ny00YjM0LTgxMWYtMjM5MGUxNDcxMmVjIn0.mo-yqeN5E4rVKlbcLZO5fNVzW82cMQGIrCeDVEiiLHA2B1M6hzTHB6cHUjCIWZufKRxH4kI-Bxq0Y7GWy0GvD0nQaeG4Bdx7BvDjfnvMbR85d1En1JYEOTmtUSWYnst4UeYpU8_yxnAhsGSY0flv-82jQGVdTe4M73q-MSlHZNE3GHvzGIjrwLCFa7fWeos3Tn3es2vg9hlzp6MgCwNFQCpkTmzld1X-Y42JXRsdST2wA8qBmYzL2S708Rd9BMy_ElfFmHtjbHdHCssLkjZfO6_VNbPvd5M3RNv3mr4VnxaEqFJ-_O4tgahaxVweHu-n91qd4WlDTfuyYPHOFwkkyw</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">@ 2022 Radics Roland és barátai által</p>
+
+    </footer>
+</div>
+
+
+<script src="./assets/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+<script src="assets/application.js"></script>
+
+
+</body>
+</html>

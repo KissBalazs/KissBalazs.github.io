@@ -1,0 +1,19 @@
+.container {
+  max-width: 1320px;
+}
+
+.error{
+  color: red;
+}
+
+.ok{
+  color: black;
+}
+
+.accordion-body{
+  overflow: auto;
+}
+
+.pt-30{
+  padding-top: 30px;
+}
