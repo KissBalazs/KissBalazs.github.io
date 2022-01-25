@@ -18,9 +18,9 @@ function createBody() {
     }
 
     try {
-        const dataExchange = document.getElementById('dataExchangeContainer').value;
-        if (dataExchange != null && dataExchange.length > 0) {
-            obj.dataExchange = JSON.parse(dataExchange);
+        const dataExchangeContainer = document.getElementById('dataExchangeContainer').value;
+        if (dataExchangeContainer != null && dataExchangeContainer.length > 0) {
+            obj.dataExchangeContainer = JSON.parse(dataExchangeContainer);
         }
     } catch (e) {
         alert("Hiba a dataExchangeContainer JSON-ben!: " + e);
