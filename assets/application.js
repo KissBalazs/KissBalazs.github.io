@@ -6,9 +6,9 @@ function loadSavedElements(){
     instituteIdElement = document.getElementById('instituteId');
     departmentIdElement = document.getElementById('departmentId');
 
-    loginNameElement.value = sessionStorage.getItem(key_loginName) ?? '';
-    instituteIdElement.value = sessionStorage.getItem(key_instituteId) ?? '';
-    departmentIdElement.value = sessionStorage.getItem(key_departmentId) ?? '';
+    loginNameElement.value = localStorage.getItem(key_loginName) ?? '';
+    instituteIdElement.value = localStorage.getItem(key_instituteId) ?? '';
+    departmentIdElement.value = localStorage.getItem(key_departmentId) ?? '';
 }
 
 function createBody() {
@@ -17,9 +17,9 @@ function createBody() {
         instituteId: document.getElementById('instituteId').value,
         departmentId: document.getElementById('departmentId').value,
     }
-    sessionStorage.setItem(key_loginName, obj.loginName)
-    sessionStorage.setItem(key_instituteId, obj.instituteId)
-    sessionStorage.setItem(key_departmentId, obj.departmentId)
+    localStorage.setItem(key_loginName, obj.loginName)
+    localStorage.setItem(key_instituteId, obj.instituteId)
+    localStorage.setItem(key_departmentId, obj.departmentId)
     try {
         const roles = document.getElementById('roles').value;
         if (roles != null && roles.length > 0 && roles !== "[ ]") {
